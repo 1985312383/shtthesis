@@ -24,9 +24,55 @@
         "-outdir=%OUTDIR%",
         "%DOC%"
       ],
-    }
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ]
+    },
   ],
   "latex-workshop.latex.recipes": [
+    {
+      "name": "xelatex -> biber -> xelatex*2",
+      "tools": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ]
+    },
+    {
+      "name": "lualatex->biber->lualatex*2",
+      "tools": [
+        "lualatex",
+        "biber",
+        "lualatex",
+        "lualatex"
+      ]
+    },
     {
       "name": "latexmk (xelatex)",
       "tools": [
